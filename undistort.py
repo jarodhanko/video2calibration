@@ -15,10 +15,10 @@ if __name__ == '__main__':
     args = parser.parse_args()
 
     with open(args.calibration) as fr:
-        c = yaml.load(fr)
+        c = yaml.load(fr, Loader=yaml.FullLoader)
 
     for fn in glob(args.input_mask):
-        print 'processing %s...' % fn,
+        print('processing %s...' % fn,)
         img = cv2.imread(fn)
         if img is None:
             print("Failed to load " + fn)
@@ -33,6 +33,6 @@ if __name__ == '__main__':
         name, ext = os.path.splitext(os.path.basename(fn))
         cv2.imwrite(os.path.join(args.out, name + '_und' + ext), img_und)
 
-        print 'ok'
+        print('ok')
 
 
